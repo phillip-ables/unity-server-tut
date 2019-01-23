@@ -61,5 +61,18 @@ public class Server : MonoBehaviour {
 
         //were looking at the message bump we fill in all that information
         NetworkEventType type = NetworkTransport.Receive(out recHostId, out connectionId, out channelId, recBuffer, BYTE_SIZE, out dataSize, out error);
+        switch (type)
+        {
+            case NetworkEventType.Nothing:
+                break;
+
+            case NetworkEventType.ConnectEvent:
+                Debug.Log(string.Format("User {0} has connected!", connectionId));
+                break;
+            case NetworkEventType.DisconnectEvent:
+                Debug.Log(string.Format("User {0} has disconnected :(", connectionId));
+
+
+        }
     }
 }
