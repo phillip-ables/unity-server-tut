@@ -9,7 +9,6 @@ public class Client : MonoBehaviour
 
     private byte reliableChannel;
     private int hostId;
-    private int webHostId;
     private bool isStarted;
 
     #region Monobehaviour
@@ -29,9 +28,8 @@ public class Client : MonoBehaviour
 
         HostTopology topo = new HostTopology(cc, MAX_USER);
 
-        // SERVER ONLY CODE
-        hostId = NetworkTransport.AddHost(topo, PORT, null);
-        webHostId = NetworkTransport.AddWebsocketHost(topo, WEB_PORT, null);
+        // CLIENT ONLY CODE
+        hostId = NetworkTransport.AddHost(topo, 0);  // we are not opening ourself to peer to peer, we are closing this up
 
         Debug.Log(string.Format("Opening connection on port {0} and webport {1}", PORT, WEB_PORT));
         isStarted = true;
