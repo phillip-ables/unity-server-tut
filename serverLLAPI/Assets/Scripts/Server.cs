@@ -2,10 +2,14 @@
 using UnityEngine.Networking;
 
 public class Server : MonoBehaviour {
-    private byte reliableChannel;
     private const int MAX_USER = 100;
     private const int PORT = 26000;
     private const int WEB_PORT = 26001;
+
+    private byte reliableChannel;
+    private int hostId;
+    private int webHostId;
+    private bool isStarted;
 
 
     private void Start()
@@ -24,7 +28,9 @@ public class Server : MonoBehaviour {
         HostTopology topo = new HostTopology(cc, MAX_USER);
 
         // SERVER ONLY CODE
-        NetworkTransport.AddHost(topo, PORT, null);
-        NetworkTransport.AddWebsocketHost(topo, WEB_PORT, null);
+        hostId = NetworkTransport.AddHost(topo, PORT, null);
+        webHostId = NetworkTransport.AddWebsocketHost(topo, WEB_PORT, null);
+
+        isStarted = true;
     }
 }
