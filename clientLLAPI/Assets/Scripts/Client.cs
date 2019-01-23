@@ -32,7 +32,13 @@ public class Client : MonoBehaviour
 
         // CLIENT ONLY CODE
         hostId = NetworkTransport.AddHost(topo, 0);  // we are not opening ourself to peer to peer, we are closing this up
+#if UNITY_WEBGL && !UNITY_EDITOR
+        // webclient
+        NetworkTransport.Connect(hostId, SERVER_IP, WEB_PORT, 0, out error);
+#else
+        // Standalone client
         NetworkTransport.Connect(hostId, SERVER_IP, PORT, 0, out error);
+#endif
 
         Debug.Log(string.Format("Opening connection on port {0} and webport {1}", PORT, WEB_PORT));
         isStarted = true;
