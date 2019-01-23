@@ -34,4 +34,9 @@ public class Server : MonoBehaviour {
 
         isStarted = true;
     }
+    public void Shutdown()
+    {
+        isStarted = false;
+        NetworkTransport.Shutdown();  // killing the initialize
+    }
 }
