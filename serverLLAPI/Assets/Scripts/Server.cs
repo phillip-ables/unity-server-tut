@@ -46,6 +46,12 @@ public class Server : MonoBehaviour {
     }
     public void UpdateMessagePump()
     {
+        //look at the messages we recieve (connection request, connect function, disconnect, data event ig this is my authentification)
+        if (!isStarted)
+            return;
 
+        int recHostId;      // Is this from Web? Or standalone
+        int connectionId;   // Which user is sending me this?
+        int channelId;      // Which land is he sending message from?
     }
 }
