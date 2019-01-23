@@ -5,11 +5,13 @@ public class Server : MonoBehaviour {
     private const int MAX_USER = 100;
     private const int PORT = 26000;
     private const int WEB_PORT = 26001;
+    private const int BYTE_SIZE = 1024;
 
     private byte reliableChannel;
     private int hostId;
     private int webHostId;
     private bool isStarted;
+    private byte error;
 
     #region Monobehaviour
     private void Start()
@@ -53,5 +55,9 @@ public class Server : MonoBehaviour {
         int recHostId;      // Is this from Web? Or standalone
         int connectionId;   // Which user is sending me this?
         int channelId;      // Which land is he sending message from?
+
+        byte[] recBuffer = new byte[BYTE_SIZE];  // hold payload: message info storage with a max size byte size
+        int dataSize;                            // actual size of the message, how far you should actually read
+        byte error;                              // 
     }
 }
