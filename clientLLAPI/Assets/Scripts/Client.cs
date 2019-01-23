@@ -35,12 +35,14 @@ public class Client : MonoBehaviour
 #if UNITY_WEBGL && !UNITY_EDITOR
         // webclient
         NetworkTransport.Connect(hostId, SERVER_IP, WEB_PORT, 0, out error);
+        Debug.Log("Connecting from standalone");
 #else
         // Standalone client
         NetworkTransport.Connect(hostId, SERVER_IP, PORT, 0, out error);
+        Debug.Log("Connecting from standalone");
 #endif
 
-        Debug.Log(string.Format("Opening connection on port {0} and webport {1}", PORT, WEB_PORT));
+        Debug.Log(string.Format("Attempting to connect on {0}...", SERVER_IP));
         isStarted = true;
     }
     public void Shutdown()

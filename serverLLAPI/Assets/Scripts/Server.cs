@@ -17,6 +17,10 @@ public class Server : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
         Init();
     }
+    private void Update()
+    {
+        UpdateMessagePump();
+    }
     #endregion
 
     public void Init()
@@ -39,5 +43,9 @@ public class Server : MonoBehaviour {
     {
         isStarted = false;
         NetworkTransport.Shutdown();  // killing the initialize
+    }
+    public void UpdateMessagePump()
+    {
+
     }
 }
