@@ -58,6 +58,8 @@ public class Server : MonoBehaviour {
 
         byte[] recBuffer = new byte[BYTE_SIZE];  // hold payload: message info storage with a max size byte size
         int dataSize;                            // actual size of the message, how far you should actually read
-        byte error;                              // 
+
+        //were looking at the message bump we fill in all that information
+        NetworkEventType type = NetworkTransport.Receive(out recHostId, out connectionId, out channelId, recBuffer, BYTE_SIZE, out dataSize, out error);
     }
 }
