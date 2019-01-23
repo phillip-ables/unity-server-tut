@@ -71,6 +71,11 @@ public class Server : MonoBehaviour {
                 break;
             case NetworkEventType.DisconnectEvent:
                 Debug.Log(string.Format("User {0} has disconnected :(", connectionId));
+                break;
+            default:
+            case NetworkEventType.BroadcastEvent:
+                Debug.Log("Unexpected network event type");
+                break;
 
 
         }
