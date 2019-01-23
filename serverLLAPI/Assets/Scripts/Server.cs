@@ -32,6 +32,7 @@ public class Server : MonoBehaviour {
         hostId = NetworkTransport.AddHost(topo, PORT, null);
         webHostId = NetworkTransport.AddWebsocketHost(topo, WEB_PORT, null);
 
+        Debug.Log(string.Format("Opening connection on port {0} and webport {1}", PORT, WEB_PORT));
         isStarted = true;
     }
     public void Shutdown()
