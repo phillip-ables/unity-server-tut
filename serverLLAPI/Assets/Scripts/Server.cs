@@ -11,12 +11,13 @@ public class Server : MonoBehaviour {
     private int webHostId;
     private bool isStarted;
 
-
+    #region Monobehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
         Init();
     }
+    #endregion
 
     public void Init()
     {
