@@ -93,7 +93,20 @@ public class Server : MonoBehaviour {
     #region OnData
     private void OnData(int cnnId, int channelId, int recHostId, NetMsg msg)
     {
+        switch (msg.OP)
+        {
+            case NetOP.None:
+                break;
 
+            case NetOP.CreateAccount:
+                CreateAccount(cnnId, channelId, recHostId, (Net_CreateAccount)msg);
+                break;
+        }
+    }
+
+    private void CreateAccount(int cnnId, int channelId, int recHostId, Net_CreateAccount ca)
+    {
+        Debug.Log(string.Format("{0},{1},{2}", ca.Username, ca.Password, ca.Email));
     }
     #endregion
 }
