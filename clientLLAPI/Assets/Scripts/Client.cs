@@ -6,6 +6,7 @@ public class Client : MonoBehaviour
     private const int MAX_USER = 100;
     private const int PORT = 26000;
     private const int WEB_PORT = 26001;
+    private const int BYTE_SIZE = 1024;
     private const string SERVER_IP = "127.0.0.1";  // or "localhost" you are connecting to yourself
 
     private byte error;
@@ -49,6 +50,44 @@ public class Client : MonoBehaviour
     {
         isStarted = false;
         NetworkTransport.Shutdown();  // killing the initialize
+    }
+    public void UpdateMessagePump()
+    {
+        //look at the messages we recieve (connection request, connect function, disconnect, data event ig this is my authentification)
+        if (!isStarted)
+            return;
+
+        int recHostId;      // Is this from Web? Or standalone
+        int connectionId;   // Which user is sending me this?
+        int channelId;      // Which land is he sending message from?
+
+        byte[] recBuffer = new byte[BYTE_SIZE];  // hold payload: message info storage with a max size byte size
+        int dataSize;                            // actual size of the message, how far you should actually read
+
+        //were looking at the message bump we fill in all that information
+        NetworkEventType type = NetworkTransport.Receive(out recHostId, out connectionId, out channelId, recBuffer, BYTE_SIZE, out dataSize, out error);
+        switch (type)
+        {
+            case NetworkEventType.Nothing:
+                break;
+
+            case NetworkEventType.ConnectEvent:
+                Debug.Log(string.Format("User {0} has connected!", connectionId));
+                break;
+            case NetworkEventType.DisconnectEvent:
+                Debug.Log(string.Format("User {0} has disconnected :(", connectionId));
+                break;
+            case NetworkEventType.DataEvent:  // most important event type
+                Debug.Log("date");
+                break;
+
+            default:
+            case NetworkEventType.BroadcastEvent:
+                Debug.Log("Unexpected network event type");
+                break;
+
+
+        }
     }
 }
 
