@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
 using UnityEngine.Networking;
 
 public class Client : MonoBehaviour
@@ -102,7 +104,9 @@ public class Client : MonoBehaviour
         byte[] buffer = new byte[BYTE_SIZE];
 
         //this is where you would crush your data into a byte[]
-        buffer[0] = 255;
+        BinaryFormatter formatter = new BinaryFormatter();
+        MemoryStream ms = new MemoryStream(buffer);
+        formatter.Serialize(ms, msg);
 
         NetworkTransport.Send(hostId, connectionId, reliableChannel, buffer, BYTE_SIZE, out error);
     }

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
 using UnityEngine.Networking;
 
 public class Server : MonoBehaviour {
@@ -73,7 +75,9 @@ public class Server : MonoBehaviour {
                 Debug.Log(string.Format("User {0} has disconnected :(", connectionId));
                 break;
             case NetworkEventType.DataEvent:  // most important event type
-                Debug.Log(recBuffer[0]);
+                BinaryFormatter formatter = new BinaryFormatter();
+                MemoryStream ms = new MemoryStream(recBuffer);
+                
                 break;
 
             default:
