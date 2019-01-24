@@ -110,4 +110,19 @@ public class Server : MonoBehaviour {
         Debug.Log(string.Format("{0},{1},{2}", ca.Username, ca.Password, ca.Email));
     }
     #endregion
+
+    #region Send
+    public void SendServer(NetMsg msg)
+    {
+        // this is where we hold our data
+        byte[] buffer = new byte[BYTE_SIZE];
+
+        //this is where you would crush your data into a byte[]
+        BinaryFormatter formatter = new BinaryFormatter();
+        MemoryStream ms = new MemoryStream(buffer);
+        formatter.Serialize(ms, msg);
+
+        NetworkTransport.Send(hostId, connectionId, reliableChannel, buffer, BYTE_SIZE, out error);
+    }
+    #endregion
 }
