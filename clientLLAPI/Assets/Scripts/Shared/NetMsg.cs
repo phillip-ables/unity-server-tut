@@ -1,16 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿
+[System.Serializable]  // using a binary writer and reader
+public class NetMsg
+{
+    //everything that is to be put in here is going to be put in a packet
+    //as minimal as possible
 
-public class NetMsg : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
