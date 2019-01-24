@@ -77,7 +77,9 @@ public class Server : MonoBehaviour {
             case NetworkEventType.DataEvent:  // most important event type
                 BinaryFormatter formatter = new BinaryFormatter();
                 MemoryStream ms = new MemoryStream(recBuffer);
-                
+                NetMsg msg = (NetMsg)formatter.Deserialize(ms);
+
+                OnData(connectionId, channelId, recHostId, msg);
                 break;
 
             default:
@@ -88,4 +90,10 @@ public class Server : MonoBehaviour {
 
         }
     }
+    #region OnData
+    private void OnData(int cnnId, int channelId, int recHostId, NetMsg msg)
+    {
+
+    }
+    #endregion
 }
