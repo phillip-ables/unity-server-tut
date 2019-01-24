@@ -13,6 +13,7 @@ public class Client : MonoBehaviour
     private byte reliableChannel;
     private int hostId;
     private bool isStarted;
+    private int connectionId;
 
     #region Monobehaviour
     private void Start()
@@ -39,11 +40,11 @@ public class Client : MonoBehaviour
         hostId = NetworkTransport.AddHost(topo, 0);  // we are not opening ourself to peer to peer, we are closing this up
 #if UNITY_WEBGL && !UNITY_EDITOR
         // webclient
-        NetworkTransport.Connect(hostId, SERVER_IP, WEB_PORT, 0, out error);
+        connectionId = NetworkTransport.Connect(hostId, SERVER_IP, WEB_PORT, 0, out error);
         Debug.Log("Connecting from standalone");
 #else
         // Standalone client
-        NetworkTransport.Connect(hostId, SERVER_IP, PORT, 0, out error);
+        connectionId = NetworkTransport.Connect(hostId, SERVER_IP, PORT, 0, out error);
         Debug.Log("Connecting from standalone");
 #endif
 
