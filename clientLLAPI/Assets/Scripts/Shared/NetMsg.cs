@@ -1,6 +1,6 @@
 ﻿public static class NetOP
 {
-
+    public const int None = 0;
 }
 
 [System.Serializable]  // using a binary writer and reader
