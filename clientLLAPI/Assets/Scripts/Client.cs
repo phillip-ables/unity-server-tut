@@ -97,7 +97,13 @@ public class Client : MonoBehaviour
     #region Send
     public void SendServer()
     {
+        // this is where we hold our data
         byte[] buffer = new byte[BYTE_SIZE];
+
+        //this is where you would crush your data into a byte[]
+        buffer[0] = 255;
+
+        NetworkTransport.Send(hostId, connectionId, reliableChannel, buffer, BYTE_SIZE, out error);
     }
     #endregion
 }
