@@ -72,13 +72,13 @@ public class Client : MonoBehaviour
                 break;
 
             case NetworkEventType.ConnectEvent:
-                Debug.Log(string.Format("User {0} has connected!", connectionId));
+                Debug.Log("we have connected to the server");
                 break;
             case NetworkEventType.DisconnectEvent:
-                Debug.Log(string.Format("User {0} has disconnected :(", connectionId));
+                Debug.Log("We have been disconnected");
                 break;
             case NetworkEventType.DataEvent:  // most important event type
-                Debug.Log("date");
+                Debug.Log("data");
                 break;
 
             default:
