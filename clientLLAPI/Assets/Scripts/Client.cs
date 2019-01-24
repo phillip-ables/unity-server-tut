@@ -85,7 +85,14 @@ public class Client : MonoBehaviour
                 Debug.Log("We have been disconnected");
                 break;
             case NetworkEventType.DataEvent:  // most important event type
-                Debug.Log("data");
+                BinaryFormatter formatter = new BinaryFormatter();
+                MemoryStream ms = new MemoryStream(recBuffer);
+                NetMsg msg = (NetMsg)formatter.Deserialize(ms);
+
+                //we dont need ids because we are the client that needs id
+                //this is not band with code this is client side code so ill keep it
+                //youre trying to optimize the bandwidth code and server to remove some load off end to move faster
+                OnData(connectionId, channelId, recHostId, msg);
                 break;
 
             default:
@@ -105,17 +112,9 @@ public class Client : MonoBehaviour
             case NetOP.None:
                 Debug.Log("Unexpected Net OP");
                 break;
-
-            case NetOP.CreateAccount:
-                CreateAccount(cnnId, channelId, recHostId, (Net_CreateAccount)msg);
-                break;
         }
     }
-
-    private void CreateAccount(int cnnId, int channelId, int recHostId, Net_CreateAccount ca)
-    {
-        Debug.Log(string.Format("{0},{1},{2}", ca.Username, ca.Password, ca.Email));
-    }
+    
     #endregion
 
     #region Send
