@@ -96,7 +96,7 @@ public class Client : MonoBehaviour
     }
 
     #region Send
-    public void SendServer()
+    public void SendServer(NetMsg msg)
     {
         // this is where we hold our data
         byte[] buffer = new byte[BYTE_SIZE];
