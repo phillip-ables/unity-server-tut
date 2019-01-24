@@ -10,5 +10,10 @@ public abstract class NetMsg
     //as minimal as possible
 
     public byte OP { set; get; }  // operational code
+    
+    public NetMsg()
+    {
+        OP = NetOP.None;
+    }
 
 }
