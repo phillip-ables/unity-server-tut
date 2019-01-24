@@ -95,7 +95,10 @@ public class Client : MonoBehaviour
     }
 
     #region Send
-
+    public void SendServer()
+    {
+        byte[] buffer = new byte[BYTE_SIZE];
+    }
     #endregion
 }
 
