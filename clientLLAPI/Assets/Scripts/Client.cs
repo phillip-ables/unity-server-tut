@@ -131,5 +131,16 @@ public class Client : MonoBehaviour
         NetworkTransport.Send(hostId, connectionId, reliableChannel, buffer, BYTE_SIZE, out error);
     }
     #endregion
+
+    public void TESTFUNCTIONCREATEACCOUNT()
+    {
+        Net_CreateAccount ca = new Net_CreateAccount();
+
+        ca.Username = "Swag";
+        ca.Password = "Bamboozled";
+        ca.Email = "alsdkfjfd";
+
+        SendServer(ca);
+    }
 }
 
