@@ -47,7 +47,7 @@ public class Server : MonoBehaviour {
     {
         isStarted = false;
         NetworkTransport.Shutdown();  // killing the initialize
-    }
+     }
     public void UpdateMessagePump()
     {
         //look at the messages we recieve (connection request, connect function, disconnect, data event ig this is my authentification)
@@ -112,7 +112,7 @@ public class Server : MonoBehaviour {
     #endregion
 
     #region Send
-    public void SendServer(NetMsg msg)
+    public void SendClient(int recHost, int cnnId, NetMsg msg)
     {
         // this is where we hold our data
         byte[] buffer = new byte[BYTE_SIZE];
@@ -122,7 +122,11 @@ public class Server : MonoBehaviour {
         MemoryStream ms = new MemoryStream(buffer);
         formatter.Serialize(ms, msg);
 
-        NetworkTransport.Send(hostId, connectionId, reliableChannel, buffer, BYTE_SIZE, out error);
+        if(recHost == 0)
+            NetworkTransport.Send(hostId, cnnId, reliableChannel, buffer, BYTE_SIZE, out error);
+        else
+            NetworkTransport.Send(webHostId, cnnId, reliableChannel, buffer, BYTE_SIZE, out error);
+
     }
     #endregion
 }
