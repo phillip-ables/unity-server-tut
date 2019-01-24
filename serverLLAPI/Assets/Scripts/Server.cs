@@ -96,6 +96,7 @@ public class Server : MonoBehaviour {
         switch (msg.OP)
         {
             case NetOP.None:
+                Debug.Log("Unexpected Net OP");
                 break;
 
             case NetOP.CreateAccount:
