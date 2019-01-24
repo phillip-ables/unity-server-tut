@@ -67,7 +67,7 @@ public class Server : MonoBehaviour {
                 break;
 
             case NetworkEventType.ConnectEvent:
-                Debug.Log(string.Format("User {0} has connected!", connectionId));
+                Debug.Log(string.Format("User {0} has connected through host {1}", connectionId, recHostId));
                 break;
             case NetworkEventType.DisconnectEvent:
                 Debug.Log(string.Format("User {0} has disconnected :(", connectionId));

@@ -20,6 +20,10 @@ public class Client : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         Init();
     }
+    private void Update()
+    {
+        UpdateMessagePump();
+    }
     #endregion
 
     public void Init()
