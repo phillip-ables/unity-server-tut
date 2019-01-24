@@ -73,7 +73,7 @@ public class Server : MonoBehaviour {
                 Debug.Log(string.Format("User {0} has disconnected :(", connectionId));
                 break;
             case NetworkEventType.DataEvent:  // most important event type
-                Debug.Log("date");
+                Debug.Log(recBuffer[0]);
                 break;
 
             default:
